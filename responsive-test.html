@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Test</title>
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            50: '#f0f9ff',
+                            100: '#e0e7ff',
+                            200: '#ffedd5', // Orange light for shadows
+                            500: '#f97316', // Orange
+                            600: '#1e3a8a', // Dark Blue
+                            700: '#ea580c', // Dark Orange (Hover)
+                            800: '#172554',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-container {
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        .device-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            z-index: 1000;
+        }
+        .responsive-test {
+            background: #f0f0f0;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="device-indicator" id="device-indicator">Testing...</div>
+    
+    <div class="test-container">
+        <h1>Responsive Design Test</h1>
+        <p>This page tests the responsive CSS modifications.</p>
+        
+        <div class="grid grid-cols-3 gap-4">
+            <div class="responsive-test">Grid Item 1</div>
+            <div class="responsive-test">Grid Item 2</div>
+            <div class="responsive-test">Grid Item 3</div>
+        </div>
+        
+        <div class="text-5xl mb-4">Large Text Test</div>
+        <div class="text-2xl mb-4">Medium Text Test</div>
+        <div class="text-lg mb-4">Normal Text Test</div>
+        
+        <div class="h-80 bg-blue-100 mb-4 flex items-center justify-center">
+            Height Test Container (h-80)
+        </div>
+        
+        <div class="max-w-4xl mx-auto bg-green-100 p-8 rounded-3xl">
+            Max Width Test Container
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+            <div class="bg-red-100 p-4 rounded">Flex Item 1</div>
+            <div class="bg-red-100 p-4 rounded">Flex Item 2</div>
+        </div>
+    </div>
+    
+    <script>
+        function updateDeviceIndicator() {
+            const width = window.innerWidth;
+            const indicator = document.getElementById('device-indicator');
+            
+            if (width <= 767) {
+                indicator.textContent = `Mobile (${width}px)`;
+                indicator.style.background = '#ef4444';
+            } else if (width <= 1023) {
+                indicator.textContent = `Tablet (${width}px)`;
+                indicator.style.background = '#f59e0b';
+            } else {
+                indicator.textContent = `Desktop (${width}px)`;
+                indicator.style.background = '#10b981';
+            }
+        }
+        
+        window.addEventListener('resize', updateDeviceIndicator);
+        window.addEventListener('load', updateDeviceIndicator);
+        updateDeviceIndicator();
+    </script>
+</body>
+</html>
+
+
+
